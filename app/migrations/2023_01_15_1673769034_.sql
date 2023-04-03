@@ -1,0 +1,1 @@
+ALTER TABLE `blog_post` ADD `slug` VARCHAR(255) NOT NULL AFTER `blog_category_id`;

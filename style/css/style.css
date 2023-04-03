@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'Intro';
+    src: local('Intro'), url('../fonts/intro.woff2') format('woff2'), url('../fonts/intro.woff') format('woff'), url('../fonts/intro.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.wrapper{
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left:0;
+}
+
+.height100{
+    height: 100%;
+}
+
+.logo{
+    font-family: 'Intro';
+}
+
+.lef-column{
+    background-color: #ccc;
+}
+
+.login-form{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

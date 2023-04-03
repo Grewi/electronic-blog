@@ -1,0 +1,1 @@
+ALTER TABLE `blog_post` CHANGE `blog_category_id` `blog_category_id` INT(11) NULL;
