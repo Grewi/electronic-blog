@@ -1,7 +1,9 @@
 <?php 
 use system\core\route\route;
+use system\core\config\config;
 
 $route  = new route();
+$authDir = config::globals('authDir');
 
 //До объявления get prefix действует глобально
 $route->prefix('auth', 'index'); // Обработка форм входа и выхода
@@ -10,7 +12,7 @@ $route->namespace('app/controllers/index');
 $route->get('/')->controller('indexController', 'index')->exit();
 
 $route->namespace('app/controllers/user');
-$route->get('/login')->controller('authController', 'login')->exit();
+$route->get('/'. $authDir)->controller('authController', 'login')->exit();
 
 $route->namespace('app/controllers/configs');
 $route->get('/configs')->controller('configsController', 'index')->exit();
@@ -46,5 +48,8 @@ $route->namespace('app/controllers/upload');
 $route->post('/upload')->controller('uploadController', 'index')->exit();
 $route->get('/upload')->controller('uploadController', 'index')->exit();
 
-// error404
-$route->namespace('app/controllers/error')->controller('error', 'error404')->exit();
+require __DIR__ . '/web/admin.php';
+
+$error = new \app\controllers\error\error();
+$error->routeError();
+exit();

@@ -2,7 +2,7 @@
     <?php if (user_id() > 0) : ?>
         <a class="list-group-item" href="/?output">Выход</a>
     <?php else : ?>
-        <a class="list-group-item" href="/login">Вход</a>
+        <a class="list-group-item" href="/<?=$authDir?>">Вход</a>
     <?php endif; ?>
 </div>
 

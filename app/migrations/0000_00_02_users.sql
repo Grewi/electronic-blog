@@ -35,3 +35,14 @@ INSERT INTO `users` (`email`, `email_code`, `email_status`, `password`, `name`, 
 
 ('grewi@ya.ru', 3500, 1, '$2y$10$CgcnD9KQqVjnmUH87/rqBuemv94y8lfzGgLXU3UvoeznI9TL9q3Gm', 'Евгений', NULL, 0, 1, '2022-10-21 09:54:22');
 
+CREATE TABLE `user_role` ( 
+    `id` INT NOT NULL AUTO_INCREMENT , 
+    `slug` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)
+    ) ENGINE = InnoDB;
+
+INSERT INTO `user_role` (`slug`) VALUES ('admin'),('user');
+
+ALTER TABLE `users` ADD FOREIGN KEY (`user_role_id`) REFERENCES `user_role`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+

@@ -1,11 +1,10 @@
 <?php 
 
 namespace app\controllers;
-use system\core\controller\controller as controllerClass;
-use system\core\config\config;
-use system\core\view\view;
+use electronic\core\config\config;
+use electronic\core\view\view;
 
-abstract class controller extends controllerClass
+abstract class controller extends \system\core\controller\controller
 {
     protected $data;
 
@@ -16,7 +15,9 @@ abstract class controller extends controllerClass
         $this->data();
         $this->error();
         $this->data['lang'] = config::globals('lang');
-        $this->data['title'] = lang('global', 'title');       
+        $this->data['title'] = lang('global', 'title');   
+        $this->data['authDir'] = config::globals('authDir');
+        $this->data['adminDir'] = config::globals('adminDir');
     }
 
     protected function alert()
