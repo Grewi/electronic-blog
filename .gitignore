@@ -1,6 +1,5 @@
 *.log
 app/configs/*.ini
 app/cache/
-system/cache/views/
-system/logs/
+system/
 update/
