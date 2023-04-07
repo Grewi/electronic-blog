@@ -1,8 +1,8 @@
 <?php 
 namespace app\controllers\doc;
 use app\controllers\controller;
-use system\core\view\view;
-use system\core\config\config;
+use electronic\core\view\view;
+use electronic\core\config\config;
 
 class configsController extends controller
 {

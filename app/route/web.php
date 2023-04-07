@@ -1,8 +1,8 @@
 <?php 
-use system\core\route\route;
-use system\core\config\config;
+use electronic\core\route\route;
+use electronic\core\config\config;
 
-$route  = new route();
+$route = new route();
 $authDir = config::globals('authDir');
 
 //До объявления get prefix действует глобально
@@ -28,15 +28,15 @@ $route->namespace('app\controllers\blog')->group('blog', function($route){
 });
 
 $route->namespace('app/controllers/doc')->group('doc', function($route){
-    $route->get('/')->controller('docController', 'index')->exit();
-    $route->get('/{doc_id}')->controller('docController', 'index')->exit();
     $route->get('/configs')->controller('configsController', 'index')->exit();
     $route->get('/route')->controller('routeController', 'index')->exit();
     $route->get('/model')->controller('modelController', 'index')->exit();
     $route->get('/db')->controller('dbController', 'index')->exit();
     $route->get('/migrate')->controller('migrateController', 'index')->exit();
     $route->get('/controller')->controller('controllerController', 'index')->exit();
-    $route->get('/view')->controller('viewController', 'index')->exit();    
+    $route->get('/view')->controller('viewController', 'index')->exit();
+    $route->get('/')->controller('docController', 'index')->exit();
+    $route->get('/{doc_id}')->controller('docController', 'index')->exit();    
 });
 
 $route->namespace('app/controllers/test')->group('test', function($route){

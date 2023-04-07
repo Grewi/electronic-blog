@@ -4,8 +4,8 @@ namespace app\controllers\doc;
 use app\models\doc;
 use app\models\doc_category;
 use app\controllers\controller;
-use system\core\view\view;
-use system\core\request\request;
+use electronic\core\view\view;
+use electronic\core\request\request;
 
 class docController extends controller
 {

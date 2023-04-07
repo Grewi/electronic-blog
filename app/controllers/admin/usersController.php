@@ -3,21 +3,24 @@
 namespace app\controllers\admin;
 use app\models\users;
 use app\controllers\controller;
-use system\core\view\view;
+use electronic\core\view\view;
+use electronic\core\lang\lang;
+
 
 class usersController extends controller
 {
     public function index()
     {
-        $users = users::all();
-        $this->title('');
-        $this->data['users'] = $users;
+        $users = users::pagin();
+        $this->title(lang::users('title'));
+        $this->data['users'] = $users->all();
+        $this->data['pagin'] = $users->pagination();
         new view('admin/users/index', $this->data);
     }
 
     public function create()
     {
-        $this->title('');
+        $this->title(lang::users('newUser'));
         new view('admin/users/create', $this->data);
     }
 

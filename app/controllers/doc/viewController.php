@@ -1,7 +1,7 @@
 <?php 
 namespace app\controllers\doc;
 use app\controllers\controller;
-use system\core\view\view;
+use electronic\core\view\view;
 
 class viewController extends controller
 {

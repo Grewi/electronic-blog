@@ -3,6 +3,10 @@
 $adminDir = \electronic\core\config\config::globals('adminDir');
 
 $route->namespace('app\controllers\admin')->group($adminDir, function($route){
-    $route->get('/')->prefix('admin')->controller('adminController', 'index')->exit();
-    $route->get('/users')->prefix('admin')->controller('usersController', 'index')->exit();
+    $route->prefix('admin');
+    $route->get('/')->controller('adminController', 'index')->exit();
+    $route->get('/users')->controller('usersController', 'index')->exit();
+    $route->get('/users/create')->controller('usersController', 'create')->exit();
+
+    exit();
 });
