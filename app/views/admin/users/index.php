@@ -5,9 +5,9 @@
                 <div class="col-12">
                     <nav class="navbar navbar-light bg-light">
                         <div class="container-fluid">
-                            <div><?=$title?></div>
+                            <div><?= $title ?></div>
                             <div>
-                            <a class="btn btn-primary btn-sm" href="/<?= $adminDir ?>/users/create"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-primary btn-sm" href="/<?= $adminDir ?>/users/create"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                     </nav>
@@ -33,8 +33,10 @@
                                     <td><?= eDate($user->date_create) ?></td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-success btn-sm" href="/<?= $adminDir ?>/users/create"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a class="btn btn-danger btn-sm" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a class="btn btn-success btn-sm e-ajax" data-url="/<?= $adminDir ?>/users/update/<?= $user->id ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <?php if ($role->slug != 'admin') : ?>
+                                                <a class="btn btn-danger btn-sm e-ajax" data-url="/<?= $adminDir ?>/users/delete/<?= $user->id ?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>

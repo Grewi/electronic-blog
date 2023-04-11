@@ -5,6 +5,7 @@ use app\models\users;
 use app\models\user_role;
 use app\controllers\controller;
 use electronic\core\view\view;
+use electronic\core\view\viewJson;
 use electronic\core\lang\lang;
 use electronic\core\validate\validate;
 
@@ -54,10 +55,45 @@ class usersController extends controller
 
     }
 
+    public function updateModal()
+    {
+        $user = users::find(request('get')->user_id);
+        $roles = user_role::all();
+        $this->title('');
+        $this->data['user'] = $user;
+        $this->data['roles'] = $roles;
+        $this->data['paramModal'] = 'modal-lg';
+        new viewJson('admin/users/update', $this->data);
+    }
+
     public function update()
     {
-        $this->title('');
-        new view('admin/users/update', $this->data);
+        $user = users::find(request('get')->user_id);
+        $valid = new validate();
+        $valid->name('csrf')->csrf('userUpdate');
+        $valid->name('name')->text();
+        $valid->name('email')->mail()->errorText(lang::users('uniqueEmail'));
+        $valid->name('password')->pass();
+        $valid->name('user_role')->isset('user_role', 'id', 0)->toInt();
+        if($valid->control() && $user){
+
+            $user->name = $valid->return('name');
+            $user->email = $valid->return('email');
+            $user->password = password_hash($valid->return('password'), PASSWORD_DEFAULT);
+            $user->user_role_id = $valid->return('user_role');
+            $user->save();
+            redirect(referal_url());
+        }else{
+            dd($valid);
+            redirect(referal_url(), $valid->return(), $valid->error());
+        }
+    }
+
+    public function deleteModal()
+    {
+        $user = users::find(request('get')->user_id);
+        $this->data['user'] = $user;
+        new viewJson('admin/users/delete', $this->data);
     }
 
     public function delete()

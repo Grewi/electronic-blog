@@ -8,5 +8,8 @@ $route->namespace('app\controllers\admin')->group($adminDir, function($route){
     $route->get('/users')->controller('usersController', 'index')->exit();
     $route->get('/users/create')->controller('usersController', 'create')->exit();
     $route->post('/users/create')->controller('usersController', 'save')->exit();
+    $route->get('/users/delete/{user_id}')->controller('usersController', 'deleteModal')->exit();
+    $route->get('/users/update/{user_id}')->controller('usersController', 'updateModal')->exit();
+    $route->post('/users/update/{user_id}')->controller('usersController', 'update')->exit();
     exit();
 });

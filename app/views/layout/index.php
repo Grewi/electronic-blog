@@ -63,7 +63,6 @@
                     },
                     error: function(data) {
                         let d = JSON.parse(data.responseText);
-                        console.log(d.error);
                         if (d.error) {
                             alertAjax('Ошибка', 'danger', d.error);
                         } else {

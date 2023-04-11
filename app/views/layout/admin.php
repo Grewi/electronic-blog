@@ -52,7 +52,42 @@
     </div>
 
     <!-- //AjaxModal -->
-    <div id="ajaxModal"></div>
+    <script>
+        let ajaxModal = null;
+        $(function() {
+            $('.e-ajax').on('click', function(e) {
+                e.preventDefault();
+                let url = $(this).attr('data-url');
+                let block = $(this).attr('data-block')
+                $.ajax({
+                    url: url,
+                    success: function(data) {
+                        let old = document.getElementById('e-ajax');
+                        if(old != null){
+                            old.remove();
+                        }
+                        let d = JSON.parse(data);
+                        let elem = document.createElement('div');
+                        elem.setAttribute('id', 'e-ajax');
+                        let body = document.querySelector('body');
+                        body.appendChild(elem);
+                        $('#e-ajax').html(d);
+                    },
+                    beforeSend: function() {
+
+                    },
+                    error: function(data) {
+                        let d = JSON.parse(data.responseText);
+                        if (d.error) {
+                            alertAjax('Ошибка', 'danger', d.error);
+                        } else {
+                            alertAjax('Ошибка', 'danger', 'Данные не доступны');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 
 
 </body>
