@@ -10,8 +10,8 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label"><?= lang('users', 'userRole') ?></label>
                     <div class="col-sm-10">
-                        <select class="form-select" name="user_role">
-                            <option selected><?= lang('users', 'userRoleSelect') ?></option>
+                        <select class="form-select" name="user_role" required>
+                            <option value=""><?= lang('users', 'userRoleSelect') ?></option>
                             <?php foreach ($roles as $role) : ?>
                                 <?php $selected = $role->id == $user->user_role_id ? 'selected' : ''; ?>
                                 <option value="<?= $role->id ?>" <?=$selected?>><?= lang('roles', $role->slug) ?></option>

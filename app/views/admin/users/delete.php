@@ -1,6 +1,6 @@
 <use layout="modal">
     <block name="modal">
-        <form method="post">
+        <form method="post" action="/<?=$adminDir?>/users/delete/<?=$user->id?>">
             <div class="modal-header">
                 <h5 class="modal-title">Удаление пользователя</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

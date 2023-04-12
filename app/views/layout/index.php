@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <include file="include/alert2" />
     <div class="wrapper">
         <include file="topMenu/userMenu" />
         <div class="container-xxl height100">
@@ -28,7 +29,7 @@
                 </div>
                 <div class="col-xs-12 col-md-10">
                     <block name="index" />
-                    <?php dump($_SERVER['viewList'])?>
+                    <?php dump($_SERVER['viewList']) ?>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ use electronic\core\config\config;
 $route = new route();
 $authDir = config::globals('authDir');
 
-//До объявления get prefix действует глобально
+// До объявления get prefix действует глобально
 $route->prefix('auth', 'index'); // Обработка форм входа и выхода
 
 $route->namespace('app/controllers/index');

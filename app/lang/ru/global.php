@@ -1,5 +1,7 @@
 <?php 
 
 return [
-    'title' => 'Electronic'
+    'title' => 'Electronic',
+    'closed' => 'Закрыть',
+    'save' => 'Сохранить',
 ];

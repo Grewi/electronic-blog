@@ -15,6 +15,7 @@ class authController extends controller
         if(user_id() > 0){
             redirect('/');
         }
+        // dd(password_hash('123456', PASSWORD_DEFAULT));
         $this->title('Вход');
         new view('user/login', $this->data);
     }

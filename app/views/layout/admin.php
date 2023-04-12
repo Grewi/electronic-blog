@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <include file="include/alert2" />
     <div class="wrapper">
         <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
             <div class="container-fluid">
@@ -63,7 +64,7 @@
                     url: url,
                     success: function(data) {
                         let old = document.getElementById('e-ajax');
-                        if(old != null){
+                        if (old != null) {
                             old.remove();
                         }
                         let d = JSON.parse(data);

@@ -72,7 +72,7 @@ class usersController extends controller
         $valid = new validate();
         $valid->name('csrf')->csrf('userUpdate');
         $valid->name('name')->text();
-        $valid->name('email')->mail()->errorText(lang::users('uniqueEmail'));
+        $valid->name('email')->mail()->errorText(lang::users('uniqueEmail'))->empty();
         $valid->name('password')->pass();
         $valid->name('user_role')->isset('user_role', 'id', 0)->toInt();
         if($valid->control() && $user){
@@ -82,9 +82,10 @@ class usersController extends controller
             $user->password = password_hash($valid->return('password'), PASSWORD_DEFAULT);
             $user->user_role_id = $valid->return('user_role');
             $user->save();
+            alert2(lang::users('userEditSuccess'), 'primary');
             redirect(referal_url());
         }else{
-            dd($valid);
+            alert2(lang::users('userEditFailed'), 'danger');
             redirect(referal_url(), $valid->return(), $valid->error());
         }
     }
@@ -98,7 +99,16 @@ class usersController extends controller
 
     public function delete()
     {
-        $this->title('');
-        new view('admin/users/delete', $this->data);
+        $user = users::find(request('get')->user_id);
+        $valid = new validate();
+        $valid->name('csrf')->csrf('deleteUser');
+        if($user && $valid->control()){
+            $user->delete();
+            alert2(lang::users('userDeleteSucces'), 'primary');
+            redirect(referal_url());
+        }else{
+            alert(lang::users('userDeleteFaled'), 'danger');
+            redirect(referal_url());
+        } 
     }
 }

@@ -13,22 +13,4 @@ class adminController extends controller
         $this->title(lang::admin('title'));
         new view('admin/admin/index', $this->data);
     }
-
-    public function create()
-    {
-        $this->title('');
-        new view('admin/admin/create', $this->data);
-    }
-
-    public function update()
-    {
-        $this->title('');
-        new view('admin/admin/update', $this->data);
-    }
-
-    public function delete()
-    {
-        $this->title('');
-        new view('admin/admin/delete', $this->data);
-    }
 }
