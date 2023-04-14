@@ -1,5 +1,4 @@
-<use layout="admin">
-
+<use name="admin"></use>
 <block name="index">
-Панель Администратора
+Панель администратора
 </block>

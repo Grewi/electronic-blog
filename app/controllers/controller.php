@@ -13,6 +13,7 @@ abstract class controller extends \system\core\controller\controller
         $this->title();
         $this->alert();
         $this->alert2();
+        $this->alertAdmin();
         $this->data();
         $this->error();
         $this->data['lang'] = config::globals('lang');
@@ -40,6 +41,16 @@ abstract class controller extends \system\core\controller\controller
             $this->data['alert2'] = [];
         }
     }
+
+    protected function alertAdmin()
+    {
+        if ( isset($_SESSION['alertAdmin']) ) {
+            $this->data['alertAdmin'] = $_SESSION['alertAdmin'];
+            unset($_SESSION['alertAdmin']);
+        } else {
+            $this->data['alertAdmin'] = [];
+        }
+    }    
 
     protected function data()
     {

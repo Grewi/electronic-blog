@@ -59,7 +59,7 @@ class usersController extends controller
     {
         $user = users::find(request('get')->user_id);
         $roles = user_role::all();
-        $this->title('');
+        $this->data['titleModal'] = 'Редактирование пользователя id - '. $user->id .' ('. $user->email .')';
         $this->data['user'] = $user;
         $this->data['roles'] = $roles;
         $this->data['paramModal'] = 'modal-lg';
@@ -82,10 +82,10 @@ class usersController extends controller
             $user->password = password_hash($valid->return('password'), PASSWORD_DEFAULT);
             $user->user_role_id = $valid->return('user_role');
             $user->save();
-            alert2(lang::users('userEditSuccess'), 'primary');
+            alertAdmin(lang::users('userEditSuccess'), 'primary');
             redirect(referal_url());
         }else{
-            alert2(lang::users('userEditFailed'), 'danger');
+            alertAdmin(lang::users('userEditFailed'), 'danger');
             redirect(referal_url(), $valid->return(), $valid->error());
         }
     }
