@@ -4,6 +4,7 @@
         <h5><?= $titleModal ?></h5>
 
         <csrf type="input" name="userUpdate"></csrf>
+        
         <div class="uk-margin">
             <label class="uk-form-label"><?= lang('users', 'userRole') ?></label>
             <div class="uk-form-controls">
@@ -24,7 +25,8 @@
         <div class="uk-margin">
             <label class="uk-form-label"><?= lang('users', 'userEmail') ?></label>
             <div class="uk-form-controls">
-                <input type="email" name="email" class="uk-input" value="<?= $user->email ?>">
+                <div class="uk-text-small uk-text-danger uk-text-italic"></div>
+                <input data-user="<?= $user->id ?>" data-url="/<?= $adminDir ?>/users/valid-email" type="email" name="email" class="uk-input e-valid-input" value="<?= $user->email ?>">
             </div>
         </div>
         <div class="uk-margin">

@@ -15,6 +15,7 @@ $route->namespace('app\controllers\admin')->group($adminDir, function($route){
     $route->post('/users/delete/{user_id}')->controller('usersController', 'delete')->exit();
     $route->get('/users/update/{user_id}')->controller('usersController', 'updateModal')->exit();
     $route->post('/users/update/{user_id}')->controller('usersController', 'update')->exit();
+    $route->post('/users/valid-email')->controller('usersController', 'validEmail')->exit();
 });
 
 $route->namespace('app\controllers\admin\blog')->group($adminDir .'/blog', function($route){

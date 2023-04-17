@@ -26,7 +26,7 @@ class usersController extends controller
         $roles = user_role::all();
         $this->title(lang::users('newUser'));
         $this->data['roles'] = $roles;
-        new view('admin/users/create', $this->data);
+        new viewJson('admin/users/create', $this->data);
     }
 
     public function save()
@@ -72,7 +72,7 @@ class usersController extends controller
         $valid = new validate();
         $valid->name('csrf')->csrf('userUpdate');
         $valid->name('name')->text();
-        $valid->name('email')->mail()->errorText(lang::users('uniqueEmail'))->empty();
+        $valid->name('email')->mail()->unique('users', 'email', $user->id)->errorText(lang::users('uniqueEmail'))->empty();
         $valid->name('password')->pass();
         $valid->name('user_role')->isset('user_role', 'id', 0)->toInt();
         if($valid->control() && $user){
@@ -110,5 +110,18 @@ class usersController extends controller
             alert(lang::users('userDeleteFaled'), 'danger');
             redirect(referal_url());
         } 
+    }
+
+    public function validEmail()
+    {
+        $valid = new validate();
+        $valid->name('value')->mail()->unique('users', 'email', (int)$_POST['data-user'])->empty();
+        if($valid->control()){
+            http_response_code(200);
+            echo json_encode($valid->return());
+        }else{
+            http_response_code(400);
+            echo json_encode($valid->error());
+        }
     }
 }

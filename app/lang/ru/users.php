@@ -15,4 +15,5 @@ return [
     'userEditFailed' => 'Отредактировать не удалось',
     'userDeleteSucces' => 'Пользователь удалён',
     'userDeleteFaled' => 'Удалить не удалось',
+    'selectRole' => 'Выбор роли пользователя',
 ];

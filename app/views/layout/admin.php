@@ -13,14 +13,16 @@
     <script src="/style/scripts/jquery-3.6.0.min.js"></script>
     <link href="/style/css/font-awesome.css" rel="stylesheet">
 
+    <script src="/style/valid/admin.js"></script>
+
     <link rel="stylesheet" href="/style/highlight/styles/an-old-hope.min.css">
     <script src="/style/highlight/highlight.min.js"></script>
     <script src="/style/tinymce/tinymce.min.js"></script>
 </head>
 
 <body>
-<div class="uk-section  uk-section-xsmall uk-padding-remove-vertical">
-    <nav class="uk-navbar-container" uk-navbar>
+<div class="uk-section  uk-section-xsmall uk-padding-remove-vertical uk-section-primary uk-light">
+    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
         <div class="uk-navbar-left uk-margin-left">
             <button class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #nav-offcanvas" uk-navbar-toggle-icon></button>
             <ul class="uk-navbar-nav">
@@ -33,6 +35,8 @@
             </form>
         </div>
     </nav>
+</div>
+<div class="uk-section  uk-section-xsmall uk-padding-remove-vertical">
     <div class="uk-grid-collapse" uk-grid>
         <div class="" style="width:200px;">
             <a class="uk-button uk-button-default uk-width-1-1" href="/<?= $adminDir ?>">
@@ -41,6 +45,9 @@
             <a class="uk-button uk-button-default uk-width-1-1" href="/<?= $adminDir ?>/users">
                 <i class="fa fa-user" aria-hidden="true"></i> Пользователи
             </a>
+            <a class="uk-button uk-button-default uk-width-1-1" href="/<?= $adminDir ?>/blog/category">
+                <i class="fa fa-user" aria-hidden="true"></i> Категории блога
+            </a>            
         </div>
         <div class="uk-width-expand ">
             <block name="index"></block>

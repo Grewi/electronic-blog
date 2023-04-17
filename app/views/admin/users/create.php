@@ -1,51 +1,42 @@
-<use layout="admin"></use>
-<block name="index">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <form method="post">
-                    <nav class="navbar navbar-light bg-light">
-                        <div class="container-fluid">
-                            <div><?= $title ?></div>
-                            <div>
-                                <button type="submit" class="btn btn-success btn-sm" href="/<?= $adminDir ?>/users/create"><i class="fa fa-floppy-o"></i></button>
-                            </div>
-                        </div>
-                    </nav>
-
-                    <csrf type="input" name="userCreate">
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label"><?= lang('users', 'userRole') ?></label>
-                            <div class="col-sm-10">
-                                <select class="form-select" name="user_role">
-                                    <option selected><?= lang('users', 'userRoleSelect') ?></option>
-                                    <?php foreach ($roles as $role) : ?>
-                                        <option value="<?= $role->id ?>"><?= lang('roles', $role->slug) ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label"><?= lang('users', 'userName') ?></label>
-                            <div class="col-sm-10">
-                                <input type="text" name="name" class="form-control" value="">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label"><?= lang('users', 'userEmail') ?></label>
-                            <div class="col-sm-10">
-                                <input type="text" name="email" class="form-control" value="">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label"><?= lang('users', 'userPass') ?></label>
-                            <div class="col-sm-10">
-                                <input type="password" name="password" class="form-control" value="">
-                            </div>
-                        </div>
-                </form>
+<use layout="modalAdmin"></use>
+<block name="modal">
+    <form method="post" action="/<?= $adminDir ?>/users/create" class="uk-form-horizontal">
+        <h5><?= $titleModal ?></h5>
+        <csrf type="input" name="userCreate">
+        <div class="uk-margin">
+            <label class="uk-form-label"><?= lang('users', 'userRole') ?></label>
+            <div class="uk-form-controls">
+                <select class="uk-select" id="form-horizontal-select" name="user_role" require>
+                    <option value="<?= $role->id ?>" <?= $selected ?>><?= lang('users', 'selectRole') ?></option>
+                    <?php foreach ($roles as $role) : ?>
+                        <option value="<?= $role->id ?>" <?= $selected ?>><?= lang('roles', $role->slug) ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
-    </div>
+        <div class="uk-margin">
+            <label class="uk-form-label"><?= lang('users', 'userName') ?></label>
+            <div class="uk-form-controls">
+                <input type="text" name="name" class="uk-input" value="">
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label"><?= lang('users', 'userEmail') ?></label>
+            <div class="uk-form-controls">
+                <div class="uk-text-small uk-text-danger uk-text-italic"></div>
+                <input data-user="<?= $user->id ?>" data-url="/<?= $adminDir ?>/users/valid-email" type="email" name="email" class="uk-input e-valid-input" value="">
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label"><?= lang('users', 'userPass') ?></label>
+            <div class="uk-form-controls">
+                <input type="password" name="password" class="uk-input" value="">
+            </div>
+        </div>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button"><?= lang('global', 'closed') ?></button>
+                <button class="uk-button uk-button-primary" type="submit"><?= lang('global', 'create') ?></button>
+            </p>
+    </form>
+
 </block>

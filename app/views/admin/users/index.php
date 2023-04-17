@@ -3,8 +3,11 @@
 
     <div class="uk-section uk-background-secondary uk-section-xsmall uk-padding-remove-vertical">
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
-            <div class="uk-navbar-right uk-margin-right">
-                <a class="uk-button uk-button-primary uk-button-small" href="/<?= $adminDir ?>/users/create"><i class="fa fa-plus"></i></a>
+            <div class="uk-navbar-left uk-margin-left uk-padding-small">
+                <div><?=$title?></div>
+            </div>
+            <div class="uk-navbar-right uk-margin-right uk-padding-small">
+                <a class="uk-button uk-button-primary uk-button-small e-ajax" data-url="/<?= $adminDir ?>/users/create"><i class="fa fa-plus"></i></a>
             </div>
         </nav>
     </div>
