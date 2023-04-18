@@ -14,5 +14,5 @@ return  [
     'sort' => 'Сортировка',
     'errorParent' => 'Родительской категории не существует',
     'createCategorySuccess' => 'Категория создана',
-    'createCategoeyFailed' => 'Категорию создать не удалось'
+    'createCategoeyFailed' => 'Категорию создать не удалось',
 ];

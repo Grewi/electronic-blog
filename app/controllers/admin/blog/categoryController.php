@@ -8,9 +8,12 @@ use electronic\core\view\view;
 use electronic\core\view\viewJson;
 use electronic\core\lang\lang;
 use electronic\core\validate\validate;
+use electronic\core\config\config;
 
 class categoryController extends controller
 {
+    private $breadcrumb = [];
+
     public function index()
     {
         $parent_id = request('get')->parent_id;
@@ -19,13 +22,15 @@ class categoryController extends controller
         $this->title(lang::blog('category'));
         $this->data['categories'] = $categories->all();
         $this->data['pagin'] = $categories->pagination();
+        $this->data['parentId'] = $parent;
+        $this->data['breadcrumb'] = $this->breadcrumb($parent);
         new view('admin/blog/category/index', $this->data);
     }
 
     public function createModal()
     {
         $parent = blog_category::find(request('get')->parent_id);
-        $this->title('');
+        $this->data['title'] = lang::blog('blogCategoryCreate');
         $this->data['paramModal'] = 'modal-lg';
         $this->data['parentId'] = $parent ? $parent->id : 0;
         $this->data['parentName'] = $parent ? $parent->name : lang::blog('rootParent');
@@ -83,5 +88,32 @@ class categoryController extends controller
     {
         $this->title('');
         new view('admin/blog/category/delete', $this->data);
+    }
+
+    private function breadcrumb($categoryId)
+    {
+        $c = blog_category::find($categoryId);
+        if(!$c){
+            $this->breadcrumb[] = [
+                'url' => '/' . config::globals('adminDir') . '/blog/category/',
+                'name' => lang::blog('categories'),
+            ];
+            return $this->breadcrumb;
+        }
+
+        $this->breadcrumb[] = [
+            'url' => '/' . config::globals('adminDir') . '/blog/category/' . $c->id,
+            'name' => $c->name
+        ];
+        if($c->parent != 0){
+            return $this->breadcrumb($c->parent);
+        }else{
+            $this->breadcrumb[] = [
+                'url' => '/' . config::globals('adminDir') . '/blog/category/',
+                'name' => lang::blog('categories'),
+            ];
+            $this->breadcrumb = array_reverse($this->breadcrumb);
+            return $this->breadcrumb;
+        }
     }
 }
