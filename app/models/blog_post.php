@@ -4,8 +4,5 @@ use system\core\model\model;
 
 class blog_post extends model
 {
-    public function index()
-    {
 
-    }
 }

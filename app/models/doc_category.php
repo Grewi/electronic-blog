@@ -4,8 +4,5 @@ use system\core\model\model;
 
 class doc_category extends model
 {
-    public function index()
-    {
 
-    }
 }
