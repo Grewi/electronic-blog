@@ -97,7 +97,7 @@
             });
         });
     </script>
-    <include file="admin/alertAdmin"></include>
+    <include file="-admin/alertAdmin"></include>
 </body>
 
 </html>

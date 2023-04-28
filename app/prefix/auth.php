@@ -9,7 +9,7 @@ class auth
     {
         $authDir = config::globals('authDir');
         if(isset($_POST['email']) && isset($_POST['password'])  && !user_id()){
-            login::urlFailed($authDir)->urlSuccess('/')->login();
+            login::redirectFailed($authDir)->redirectSuccess('/')->login();
         }
 
         if(isset($_REQUEST['output']) && user_id()){
