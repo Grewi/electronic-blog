@@ -12,7 +12,6 @@ use electronic\core\config\config;
 
 class categoryController extends controller
 {
-    private $breadcrumb = [];
 
     public function index()
     {
@@ -23,7 +22,7 @@ class categoryController extends controller
         $this->data['categories'] = $categories->all();
         $this->data['pagin'] = $categories->pagination();
         $this->data['parentId'] = $parent;
-        $this->data['breadcrumb'] = $this->breadcrumb($parent);
+        $this->data['breadcrumb'] = $this->bc($parent);
         new view('admin/blog/category/index', $this->data);
     }
 
@@ -90,28 +89,22 @@ class categoryController extends controller
         new view('admin/blog/category/delete', $this->data);
     }
 
-    private function breadcrumb($categoryId)
+    private function bc($categoryId)
     {
         $c = blog_category::find($categoryId);
         if(!$c){
-            $this->breadcrumb[] = [
-                'url' => '/' . config::globals('adminDir') . '/blog/category/',
-                'name' => lang::blog('categories'),
-            ];
+            $this->breadcrumb('/' . config::globals('adminDir') . '/blog/category/', lang::blog('categories'));
             return $this->breadcrumb;
         }
 
-        $this->breadcrumb[] = [
-            'url' => '/' . config::globals('adminDir') . '/blog/category/' . $c->id,
-            'name' => $c->name
-        ];
+        $this->breadcrumb('/' . config::globals('adminDir') . '/blog/category/' . $c->id, $c->name);
+
         if($c->parent != 0){
-            return $this->breadcrumb($c->parent);
+            return $this->bc($c->parent);
         }else{
-            $this->breadcrumb[] = [
-                'url' => '/' . config::globals('adminDir') . '/blog/category/',
-                'name' => lang::blog('categories'),
-            ];
+
+            $this->breadcrumb('/' . config::globals('adminDir') . '/blog/category/', lang::blog('categories'));
+
             $this->breadcrumb = array_reverse($this->breadcrumb);
             return $this->breadcrumb;
         }

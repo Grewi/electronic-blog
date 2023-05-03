@@ -7,6 +7,7 @@ use electronic\core\view\view;
 abstract class controller extends \system\core\controller\controller
 {
     protected $data;
+    protected $breadcrumb;
 
     public function __construct()
     {
@@ -83,6 +84,11 @@ abstract class controller extends \system\core\controller\controller
         }else{
             $this->data['title'] = $configTitle;
         }
+    }
+
+    protected function breadcrumb(string $url, string $name)
+    {
+        $this->breadcrumb[] = ['url' => $url, 'name' => $name];
     }
 
     public function error404()

@@ -47,7 +47,10 @@
             </a>
             <a class="uk-button uk-button-default uk-width-1-1" href="/<?= $adminDir ?>/blog/category">
                 <i class="fa fa-user" aria-hidden="true"></i> Категории блога
-            </a>            
+            </a>
+            <a class="uk-button uk-button-default uk-width-1-1" href="/<?= $adminDir ?>/blog/posts">
+                <i class="fa fa-user" aria-hidden="true"></i> Посты блога
+            </a>          
         </div>
         <div class="uk-width-expand ">
             <block name="index"></block>

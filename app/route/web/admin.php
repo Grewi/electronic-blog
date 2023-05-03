@@ -5,23 +5,27 @@ $adminDir = \electronic\core\config\config::globals('adminDir');
 
 $route->namespace('app\controllers\admin')->group($adminDir, function($route){
     $route->prefix('admin');
-    $route->get('/')->controller('adminController', 'index')->exit();
+    $route->get('/')->controller('adminController', 'index');
 
     //Users
-    $route->get('/users')->controller('usersController', 'index')->exit();
-    $route->get('/users/create')->controller('usersController', 'create')->exit();
-    $route->post('/users/create')->controller('usersController', 'save')->exit();
-    $route->get('/users/delete/{user_id}')->controller('usersController', 'deleteModal')->exit();
-    $route->post('/users/delete/{user_id}')->controller('usersController', 'delete')->exit();
-    $route->get('/users/update/{user_id}')->controller('usersController', 'updateModal')->exit();
-    $route->post('/users/update/{user_id}')->controller('usersController', 'update')->exit();
-    $route->post('/users/valid-email')->controller('usersController', 'validEmail')->exit();
+    $route->get('/users')->controller('usersController', 'index');
+    $route->get('/users/create')->controller('usersController', 'create');
+    $route->post('/users/create')->controller('usersController', 'save');
+    $route->get('/users/delete/{user_id}')->controller('usersController', 'deleteModal');
+    $route->post('/users/delete/{user_id}')->controller('usersController', 'delete');
+    $route->get('/users/update/{user_id}')->controller('usersController', 'updateModal');
+    $route->post('/users/update/{user_id}')->controller('usersController', 'update');
+    $route->post('/users/valid-email')->controller('usersController', 'validEmail');
 });
 
 $route->namespace('app\controllers\admin\blog')->group($adminDir .'/blog', function($route){
-    $route->get('/category/create/{parent_id?}')->controller('categoryController', 'createModal')->exit();
-    $route->post('/category/create')->controller('categoryController', 'create')->exit();
-    $route->get('/category/{parent_id?}')->controller('categoryController', 'index')->exit();
+    $route->get('/category/create/{parent_id?}')->controller('categoryController', 'createModal');
+    $route->post('/category/create')->controller('categoryController', 'create');
+    $route->get('/category/{parent_id?}')->controller('categoryController', 'index');
+
+    $route->get('/posts')->controller('postsController', 'index');
+    $route->get('/posts/create')->controller('postsController', 'create');
 });
 
-exit();
+$error = new \app\controllers\error\error();
+$error->routeError();

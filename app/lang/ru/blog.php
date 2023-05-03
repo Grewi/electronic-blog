@@ -15,4 +15,7 @@ return  [
     'errorParent' => 'Родительской категории не существует',
     'createCategorySuccess' => 'Категория создана',
     'createCategoeyFailed' => 'Категорию создать не удалось',
+
+    'blogPosts' => 'Посты блога',
+    'newPost' => 'Создать новый пост',
 ];
