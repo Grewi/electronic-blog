@@ -40,8 +40,8 @@ $route->namespace('app/controllers/doc')->group('doc', function($route){
 });
 
 $route->namespace('app/controllers/test')->group('test', function($route){
-    $route->get('/')->controller('test', 'index')->exit();
-    $route->get('/{param}')->controller('test', 'index')->exit();
+    $route->get('/')->controller('testController', 'index')->exit();
+    $route->get('/{param}')->controller('testController', 'index')->exit();
 });
 
 $route->namespace('app/controllers/upload');

@@ -2,13 +2,20 @@
 namespace app\controllers\test;
 use app\controllers\controller;
 use electronic\core\view\view;
+use electronic\core\migration\migration;
 
 class testController extends controller
 {
     public function index()
     {
-        $this->title('');
-        new view('test/test/index', $this->data);
+        $m = new migration();
+        $a = [];
+        $m->createTable('test', function($m){
+            $m->id();
+            $m->int('age', 11)->null();
+            $m->decimal('data', 8, 2)->notNull();
+        });
+        dd($m);
     }
 
     public function create()
