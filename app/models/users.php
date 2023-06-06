@@ -2,7 +2,7 @@
 namespace app\models;
 use system\core\model\model;
 
-class users extends model
+class users  extends model
 {
-    
+
 }

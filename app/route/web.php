@@ -6,7 +6,7 @@ $route = new route();
 $authDir = config::globals('authDir');
 
 // До объявления get prefix действует глобально
-$route->prefix('auth', 'index'); // Обработка форм входа и выхода
+$route->filter('auth'); // Обработка форм входа и выхода
 
 $route->namespace('app/controllers/index');
 $route->get('/')->controller('indexController', 'index')->exit();
@@ -41,7 +41,7 @@ $route->namespace('app/controllers/doc')->group('doc', function($route){
 
 $route->namespace('app/controllers/test')->group('test', function($route){
     $route->get('/')->controller('testController', 'index')->exit();
-    $route->get('/{param}')->controller('testController', 'index')->exit();
+    $route->get('/sanitScript')->controller('testController', 'sanitScript')->exit();
 });
 
 $route->namespace('app/controllers/upload');

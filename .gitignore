@@ -2,4 +2,6 @@
 app/configs/*.ini
 app/cache/
 system/
+!/*/system/
 update/
+!/*/update/
